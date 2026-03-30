@@ -1,7 +1,7 @@
 """PROG 10004: Assignment 3.
 Name:Jinfeng he(komi)."""
 
-class shelf:
+class Shelf:
     """Create a class for shelf to store one product type in a vending machine shelf."""
     def __init__(self, name, price, quantity):
         self.name = name
@@ -18,10 +18,10 @@ class shelf:
 
 if __name__ == "__main__":
     #This is a test code ,I use if __name__ == "__main__": "ensures that certain code blocks only run when a script is executed directly, not when imported as a module".
-    s1 = shelf("cookies", 1.50, 2)
+    s1 = Shelf("cookies", 1.50, 2)
     print(s1.dispense())
 
-    s2 = shelf("chips", 1.00, 3)
+    s2 = Shelf("chips", 1.00, 3)
     print(s2.dispense())
 
     
