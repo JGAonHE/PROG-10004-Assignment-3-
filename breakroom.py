@@ -13,20 +13,22 @@ class BreakRoom:
     
     def simulate(self):
         choice = 0
+        print("Welcome to the Break Room!")
 
         while choice != 4:
-            print("Welcome to the breakroom!")
-            print("There are two vending machines to choose from.")
+            print()
+            print("There are two vending machines here:")
             print("1.", self.machine1)
             print("2.", self.machine2)
-            print("Your options are:")
-            print("1, Enter money")
-            print("2, Vend an item")
-            print("3, Get your change back")
-            print("4, Exit the breakroom")
+            print()
+            print("What would you like to do?")
+            print("1. Enter money")
+            print("2. Get change back")
+            print("3. Vend an item")
+            print("4. Leave the break room")
+            print()
 
-            choice=int(input("Please enter your choice: "))
-
+            choice = int(input("Your Choice? "))
             if choice == 1:
                 machine_choice = int(input("Which machine would you like to use? (1 or 2): "))
 
@@ -37,7 +39,7 @@ class BreakRoom:
                 print("4. Loonie")
                 print("5. Toonie")
 
-                coinChoice= int(input("Please enter your choice: "))
+                coinChoice = int(input("Please enter your choice: "))
 
                 amount = 0.0
 
@@ -52,47 +54,58 @@ class BreakRoom:
                 elif coinChoice == 5:
                     amount = 2.00
 
-                if machine_choice == 1:
-                    self.machine1.insertCoin(amount)
-                    print("Money entered")
-                elif machine_choice == 2:
-                    self.machine2.insertCoin(amount)
-                    print("Money entered")
+                if amount == 0.0:
+                    print("Invalid coin choice.")
                 else:
-                    print("Invalid machine choice.")
+                    numCoins = int(input("How many coins would you like to enter? "))
+                    amount = amount * numCoins
+                    if machine_choice == 1:
+                        self.machine1.insertCoin(amount)
+                        print("Money entered")
+                    elif machine_choice == 2:
+                        self.machine2.insertCoin(amount)
+                        print("Money entered")
+                    else:
+                        print("Invalid machine choice.")
                 
             elif choice == 2:
-                machineChoice =int(input("Which machine would you like to use? (1 or 2): "))
+                machineChoice = int(input("Which machine would you like to use? (1 or 2): "))
 
                 if machineChoice == 1:
-                    print("Which item?")
+                    print("Which items?")
                     for i in range(len(self.machine1.shelves)):
-                        print(i + 1, ".", self.machine1.shelves[i].name)
+                        print(i + 1,".",self.machine1.shelves[i].name)
                     
-                    itemChoice = int(input("Your choice: "))
-                    result = self.machine1.vend(itemChoice - 1)
-                    print(result)
+                    itemChoice = int(input("Please enter your choice: "))
+                    numItems = int(input("How many items would you like to vend? "))
+                    
+                    for i in range(numItems):
+                        result = self.machine1.vend(itemChoice-1)
 
-                    if result == "":
-                        print("*** Vend Failed ***")
-                    else:
-                        print(result)
-                    
+                        if result == "":\
+                            print("*** Vend Failled ***")
+                        else:
+                            print(result)
                 elif machineChoice == 2:
-                    print("Which item?")
+                    print("Which items?")
                     for i in range(len(self.machine2.shelves)):
-                        print(i + 1, ".", self.machine2.shelves[i].name)
-                    itemChoice = int(input("Your choice: "))
-                    result = self.machine2.vend(itemChoice - 1)
-                    print(result)
+                        print(i + 1,".",self.machine2.shelves[i].name)
+                    
+                    itemChoice = int(input("Please enter your choice: "))
+                    numItems = int(input("How many items would you like to vend? "))
+                    
+                    for i in range(numItems):
+                        result = self.machine2.vend(itemChoice-1)
 
-                    if result == "":
-                        print("*** Vend Failed ***")
-                    else:
-                        print(result)
-
+                        if result == "":
+                            print("*** Vend Failled ***")
+                        else:
+                            print(result)
+                
+                
             elif choice == 3:
                 machineChoice = int(input("Which machine would you like to use? (1 or 2): "))
+
                 if machineChoice == 1:
                     change = self.machine1.returnChange()
                     print("Change returned: $" + ("%0.2f" % change))
@@ -101,9 +114,9 @@ class BreakRoom:
                     print("Change returned: $" + ("%0.2f" % change))
                 else:
                     print("Invalid machine choice.")
-                    
+                
             elif choice == 4:
-                    print("Thanks for coming, Goodbye!")
+                print("Thanks for coming, Goodbye!")
                 
             else:
-                    print("Invalid choice.")
+                print("Invalid choice.")
