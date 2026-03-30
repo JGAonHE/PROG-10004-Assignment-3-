@@ -16,20 +16,11 @@ s4 = Shelf("gum", 0.50, 2)
 s5 = Shelf("soda", 2.00, 4)
 
 #Create vending machines
-machine1 = VendingMachine(s1, s2)
-machine2 = VendingMachine(s3, s4, s5)
+machine1 = VendingMachine([s1, s2])
+machine2 = VendingMachine([s3, s4, s5])
 
 #Create breakroom
 breakroom = BreakRoom(machine1, machine2)
 
 #start simulation
 breakroom.simulate()
-
-
-
-
-
-
-
-
-

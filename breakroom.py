@@ -21,8 +21,8 @@ class BreakRoom:
             print("2.", self.machine2)
             print("Your options are:")
             print("1, Enter money")
-            print("2, Get your change back")
-            print("3, Vend an item")
+            print("2, Vend an item")
+            print("3, Get your change back")
             print("4, Exit the breakroom")
 
             choice=int(input("Please enter your choice: "))
@@ -54,27 +54,15 @@ class BreakRoom:
 
                 if machine_choice == 1:
                     self.machine1.insertCoin(amount)
-                    print("Money entered)")
+                    print("Money entered")
                 elif machine_choice == 2:
                     self.machine2.insertCoin(amount)
-                    print("Money entered)")
+                    print("Money entered")
                 else:
                     print("Invalid machine choice.")
                 
             elif choice == 2:
                 machineChoice =int(input("Which machine would you like to use? (1 or 2): "))
-
-                if machineChoice == 1:
-                    change = self.machine1.returnChange()
-                    print("Change returned: $" + ("%0.2f" % change))
-                elif machineChoice == 2:
-                    change = self.machine2.returnChange()
-                    print("Change returned: $" + ("%0.2f" % change))
-                else:
-                    print("Invalid machine choice.")
-            
-            elif choice == 3:
-                machineChoice = int(input("Which machine would you like to use? (1 or 2): "))
 
                 if machineChoice == 1:
                     print("Which item?")
@@ -102,9 +90,20 @@ class BreakRoom:
                         print("*** Vend Failed ***")
                     else:
                         print(result)
-                
-                elif choice == 4:
+
+            elif choice == 3:
+                machineChoice = int(input("Which machine would you like to use? (1 or 2): "))
+                if machineChoice == 1:
+                    change = self.machine1.returnChange()
+                    print("Change returned: $" + ("%0.2f" % change))
+                elif machineChoice == 2:
+                    change = self.machine2.returnChange()
+                    print("Change returned: $" + ("%0.2f" % change))
+                else:
+                    print("Invalid machine choice.")
+                    
+            elif choice == 4:
                     print("Thanks for coming, Goodbye!")
                 
-                else:
+            else:
                     print("Invalid choice.")

@@ -12,7 +12,6 @@ class VendingMachine:
     
     def insertCoin(self, amount):
         self.credit = self.credit + amount
-        print("You have insert $" + format(amount,".2f") + " credit.")
     
     def vend(self, shelfNum):
         if self.shelves[shelfNum].quantity <= 0:
@@ -23,12 +22,12 @@ class VendingMachine:
         else:
             self.credit = self.credit - self.shelves[shelfNum].price
             item = self.shelves[shelfNum].dispense()
-            return "You choosed " + item + "."
+            return item
     
     def returnChange(self):
         change = self.credit
         self.credit = 0.0
-        return "You have returned $" + format(change,".2f") + " change."
+        return change
     
     def __str__(self):
         report = "VendingMachine- "
